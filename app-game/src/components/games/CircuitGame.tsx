@@ -52,7 +52,7 @@ export function CircuitGame({ onComplete, onFail, timeLimit }: CircuitGameProps)
       }
 
       const newConnection = { from: gameState.selectedPoint, to: pointId }
-      const reverseConnection = { from: pointId, to: gameState.selectedPoint }
+      //const reverseConnection = { from: pointId, to: gameState.selectedPoint }
 
       // Check if connection already exists
       const connectionExists = gameState.connections.some(

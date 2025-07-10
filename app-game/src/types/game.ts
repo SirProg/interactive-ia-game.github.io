@@ -51,6 +51,6 @@ export interface LibreGameState {
 export interface CircuitGameState {
   connections: Array<{ from: string; to: string }>
   requiredConnections: Array<{ from: string; to: string }>
-  selectedPoint: string | null
+   selectedPoint: string | null
   points: Array<{ id: string; x: number; y: number; type: "input" | "output" | "component" }>
 }

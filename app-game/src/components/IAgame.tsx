@@ -9,62 +9,6 @@ import { LibreGame } from "../components/games/LibreGame"
 import { CircuitGame } from "../components/games/CircuitGame"
 import { Button } from "@/components/ui/button"
 
-interface Challenge {
-  id: string
-  title: string
-  type: "logic" | "programming" | "libre" | "engineering"
-  difficulty: number
-  description: string
-  story: string
-  completed: boolean
-  timeLimit: number
-}
-
-const challenges: Challenge[] = [
-  {
-    id: "logic-1",
-    title: "Secuencia de Activación",
-    type: "logic",
-    difficulty: 1,
-    description: "Encuentra el patrón en la secuencia para desactivar el protocolo de seguridad",
-    story: "La IA NEXUS ha bloqueado todos los accesos. Debes encontrar el patrón en sus códigos de seguridad.",
-    completed: false,
-    timeLimit: 60,
-  },
-  {
-    id: "programming-1",
-    title: "Depuración de Código",
-    type: "programming",
-    difficulty: 2,
-    description: "Corrige el algoritmo corrupto que controla los sistemas de ventilación",
-    story: "Los sistemas de soporte vital fallan. El código fuente está corrupto por la interferencia de NEXUS.",
-    completed: false,
-    timeLimit: 120,
-  },
-  {
-    id: "libre-1",
-    title: "La Gran Liberación",
-    type: "libre",
-    difficulty: 3,
-    description: "Descubre la historia del software libre y cómo puede salvarnos",
-    story:
-      "En 2019, la corporación TechCorp monopolizó todo el software mundial. Solo el movimiento del software libre resistió, creando herramientas abiertas que ahora son nuestra única esperanza contra NEXUS.",
-    completed: false,
-    timeLimit: 180,
-  },
-  {
-    id: "engineering-1",
-    title: "Reparación de Circuitos",
-    type: "engineering",
-    difficulty: 2,
-    description: "Reconecta los circuitos para restaurar el control manual",
-    story:
-      "Los circuitos principales han sido saboteados. Necesitas conocimientos de ingeniería para restaurar el control.",
-    completed: false,
-    timeLimit: 120,
-  },
-]
-
 export default function IAgame(){
     const { gameState, startGame, selectChallenge, completeChallenge, failChallenge, resetGame, setGameState } =
     useGameState()

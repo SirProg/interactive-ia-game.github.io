@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect , useRef} from "react"
 import { Progress } from "@/components/ui/progress"
 import { Clock } from "lucide-react"
 
@@ -12,26 +12,33 @@ interface GameTimerProps {
 
 export function GameTimer({ timeLimit, onTimeUp, isActive }: GameTimerProps) {
   const [timeLeft, setTimeLeft] = useState(timeLimit)
-
+  const startRef = useRef<number | null>(null)
+  
   useEffect(() => {
     setTimeLeft(timeLimit)
+    startRef.current = null
   }, [timeLimit])
 
   useEffect(() => {
     if (!isActive) return
 
+    if (startRef.current === null) {
+      startRef.current = Date.now()
+    }
     const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          onTimeUp()
-          return 0
-        }
-        return prev - 1
-      })
-    }, 1000)
+      const secondsPassed = Math.floor((Date.now() - (startRef.current ?? 0)) / 1000)
+      const newTimeLeft = Math.max(timeLimit - secondsPassed, 0)
+
+      setTimeLeft(newTimeLeft)
+
+      if (newTimeLeft === 0) {
+        clearInterval(interval)
+        onTimeUp()
+      }
+    }, 250) 
 
     return () => clearInterval(interval)
-  }, [isActive, onTimeUp])
+  }, [isActive, onTimeUp, timeLimit])
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
